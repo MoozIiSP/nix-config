@@ -2,7 +2,7 @@
 
 let
   customFontPkgs = [
-    (import ../../packges/font/sarasa-gothic {})
+    # (import ../../packges/font/sarasa-gothic {})
   ];
 in {
   fonts = {
@@ -15,6 +15,7 @@ in {
       open-sans
       twemoji-color-font
       liberation_ttf
+      sarasa-gothic
     ] ++ customFontPkgs;
 
     fontconfig = {

@@ -16,12 +16,14 @@
 
   # GPU Driver
   hardware.opengl.enable = true;
+  hardware.nvidia.package = pkgs.linuxPackages_latest.nvidia_x11_beta;
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ pkgs.asus-wmi-sensors ];
+  boot.kernelModules = [ "kvm-amd" "asus-wmi-sensors" ];
+  boot.extraModulePackages = [ pkgs.linuxPackages_latest.asus-wmi-sensors ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/30ec9bb8-cdfd-4ad3-90ae-c179ea0dc8f9";
@@ -34,4 +36,5 @@
     };
 
   # swapDevices = [ ];
+  nix.maxJobs = lib.mkDefault 8;
 }

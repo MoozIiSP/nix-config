@@ -10,5 +10,5 @@ in
     passwordAuthentication = lib.mkDefault false;
   };
 
-  users.extraUsers.root.openssh.authorizedKeys.keys = lib.mkDefault [ secrets.ryzenserver ];
+  users.extraUsers.root.openssh.authorizedKeys.keys = lib.mkDefault [ secrets.mooziisp ];
 }

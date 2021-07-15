@@ -13,6 +13,15 @@
   # mount tmpfs on /tmp
   boot.tmpOnTmpfs = lib.mkDefault true;
 
+  # FIXME Emacs 28.0.50
+  services.emacs.enable = true;
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+    }))
+    # (import ../overlays)  # just fix version
+  ];
+
   environment.systemPackages = with pkgs; [
     # system status monitor
     htop
@@ -22,7 +31,7 @@
     # network tools
     tcpdump
     telnet
-    whois  # Intelligent WHOIS client from Debian
+    # whois  # Intelligent WHOIS client from Debian
     lsof
     # download
     wget
@@ -41,7 +50,13 @@
     xclip  # Tool to access the X clipboard from a console application
     tealdeer  # A very fast implementation of tldr in Rust
     dfc  # advanced df
+    ranger  # cli file explorer
     gitAndTools.gitFull  # version control
+    # editor
+    zile
+    #emacsGcc
+    # cachix
+    cachix
   ];
 
   programs.bash.enableCompletion = true;

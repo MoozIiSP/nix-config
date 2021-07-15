@@ -9,7 +9,7 @@
     notifications = {
       # mail.enable = if config.services.postfix.enable then true else false;
       # x11.enable = if config.services.xserver.enable then true else false;
-      wall.enable = false;
+      wall.enable = true;
       #test = true;
     };
   };

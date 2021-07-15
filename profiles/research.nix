@@ -1,9 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
+with pkgs;
 let
-  customPkgs = [
-    (import ../packages/python-torchmetric {})
-  ];
+  customPkgs = {
+    torchmetric = callPackage ../packages/python-torchmetric { };
+  };
 
   # common scientific packages
   scientificPackages = with python39Packages; [
@@ -19,8 +20,8 @@ let
   ];
 
   # deep learning framework
-  pytorchPackages = with python39Packages; [
-    pytorchWithCuda
+  pytorchPackages =  with python39Packages; [
+    # pytorchWithCuda TODO: use overlays
     torchvision
     pytorch-lightning  # keras - pytorch version
     customPkgs.torchmetric      # pytorch-lightning metrics package
@@ -28,10 +29,17 @@ let
     tensorflow-tensorboard
   ];
 in {
-  environment.systemPackages = with pkgs; with cudaPackages; [ 
-    cudatoolkit_11_1
-    cudnn_cudatoolkit_11_1
-  ] ++ scientificPackages ++ pytorchPackages;
+  nixpkgs.overlays = [
+    (import ../overlays)  # just fix version
+  ];
+
+  environment.systemPackages = with pkgs; [ 
+    cudatoolkit
+    cudnn
+    nccl
+    magma
+    pytorch
+  ];
 
   hardware.opengl.enable = true;
   hardware.opengl.setLdLibraryPath = true;

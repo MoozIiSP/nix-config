@@ -4,16 +4,18 @@
 
 { config, pkgs, callPackage, ... }:
 
-let 
-  customPkgs = import ./pkgs/default.nix {};
-in {
+{
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      # (fetchTarball "https://github.com/MoozIiSP/nixos-vscode-server/tarball/master")
+      ../../profiles/hardware.nix
+      ../../profiles/dummy-desktop.nix
+      ../../profiles/virtualization.nix
+      ../../profiles/server.nix
+      ../../profiles/research.nix
+      ../../profiles/development.nix
     ];
   nixpkgs.config.allowUnfree = true;
-  # nixpkgs.config.packageOverrides = pkgs: import ./pkgs { pkgs = pkgs; };
 
   boot = {
     loader = {
@@ -39,47 +41,28 @@ in {
     # replicates the default behaviour.
     useDHCP = false;
     interfaces.enp7s0.useDHCP = true;
+    nameservers = [ "1.1.1.1" "8.8.8.8" "8.8.4.4" "114.114.114.114" ];
 
     # Configure network proxy if necessary
     # proxy.default = "http://user:password@proxy:port/";
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
 
-  # Set your time zone.
-  time.timeZone = "Asia/Shanghai";
+  # # Set your time zone.
+  # time.timeZone = "Asia/Shanghai";
 
-  # powerManagement.powertop.enable = true;
+  # # powerManagement.powertop.enable = true;
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-  };
+  # # Select internationalisation properties.
+  # i18n.defaultLocale = "en_US.UTF-8";
+  # console = {
+  #   font = "Lat2-Terminus16";
+  #   keyMap = "us";
+  # };
 
   # # NVIDIA Device
   # nixpkgs.config.allowUnfree = true;
   # services.xserver.videoDrivers = [ "nvidia" ];
-
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  # services.xserver.displayManager.lightdm = true;
-  services.xserver.displayManager.startx.enable = true;
-
-  # Enable the GNOME 3 Desktop Environment.
-  services.xserver.displayManager.gdm.enable = false;
-  services.xserver.desktopManager.gnome.enable = false;
-
-
-  # Emacs 28.0.50
-  services.emacs.enable = true;
-  services.emacs.package = pkgs.emacsUnstable;
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
-    }))
-  ];
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -102,19 +85,6 @@ in {
     # shell = pkgs.zsh;  TODO: first use bash
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    zile # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    emacsGit  # need emacs 28.0.50 to release.
-    git
-    sqlite
-    sarasa-gothic
-    nodejs
-    zsh
-  ] ++ customPkgs.research.dlpack ++ customPkgs.devel.devpack;
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -130,6 +100,7 @@ in {
     openssh = {
       enable = true;
       allowSFTP = true;
+      passwordAuthentication = true;
     };
 
     sshd.enable = true;

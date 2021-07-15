@@ -2,7 +2,9 @@
 
 let 
   clangPackages = with pkgs; [
-    gcc
+    cmake
+    cmake-language-server
+    gcc  # default 10
     gdb
     # LSP
     clang-tools
