@@ -2,25 +2,25 @@
 
 {
   imports = [
-    ../services/grub.nix
-    ../services/ssh.nix
-    ../services/ntp.nix
-    ../services/dns.nix
-    ../services/nix.nix
-    ../services/localization.nix
+    # ../services/grub.nix
+    # ../services/ssh.nix
+    # ../services/ntp.nix
+    # ../services/dns.nix
+    # ../services/nix.nix
+    # ../services/localization.nix
   ];
 
   # mount tmpfs on /tmp
   boot.tmpOnTmpfs = lib.mkDefault true;
 
   # FIXME Emacs 28.0.50
-  services.emacs.enable = true;
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
-    }))
-    # (import ../overlays)  # just fix version
-  ];
+  # services.emacs.enable = true;
+  # nixpkgs.overlays = [
+  #   (import (builtins.fetchTarball {
+  #     url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+  #   }))
+  #   # (import ../overlays)  # just fix version
+  # ];
 
   environment.systemPackages = with pkgs; [
     # system status monitor
