@@ -39,9 +39,9 @@ with pkgs;
     };
   };
 
-  backupSystemPackages = with pkgs; [
+  # backupSystemPackages = with pkgs; [
 
-  ];
+  # ];
 
   remoteManagePackages = with pkgs; [
     # backgroud process
