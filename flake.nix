@@ -39,9 +39,9 @@
           }
         ];
 
-        wsl = nixpkgs.lib.nixosSystem {
-          inherit nixos-wsl;
-        };
+        # wsl = nixpkgs.lib.nixosSystem {
+        #   inherit nixos-wsl;
+        # };
       };
     };
 
