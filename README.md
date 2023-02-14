@@ -1,19 +1,13 @@
 # Structure
 
-## machines
-Here are the configuration.nix files for my machines. See their README for detailed description.
-
-## modules
-My personal NixOS modules.
-
-## packages
-My personal Nix packages.
-
 ## profiles
-Options for specific domains like server, desktop or video-production.
+根据硬件和用途设计的Nix档案
+
+## overlays
+用于自定义Nixpkgs中的软件包
+
+## pkgs
+用于补充Nixpkgs中不存在的软件包
 
 ## services
-Default service configurations.
-
-## users
-User specific configuration including dotfiles using Home Manager.
+相应的软件配置

@@ -62,8 +62,8 @@
   programs.bash.enableCompletion = true;
 
   environment.variables = {
-    "EDITOR" = "zile";
-    "VISUAL" = "zile";
+    "EDITOR" = "emacs";
+    "VISUAL" = "emacs";
   };
 
   # documentation.enable = false;
