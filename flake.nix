@@ -34,9 +34,7 @@
           # NOTE add overlays
           {
             nixpkgs.overlays = with inputs; [
-              nur.overlay
               emacs.overlay
-              emacs-overlay.overlay
             ];
           }
         ];
