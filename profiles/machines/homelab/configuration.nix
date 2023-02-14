@@ -11,12 +11,12 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../profiles/hardware.nix
-      ../profiles/dummy-desktop.nix
-      ../profiles/virtualization.nix
-      ../profiles/server.nix
-      ../profiles/research.nix
-      ../profiles/development.nix
+      ../../../profiles/hardware.nix
+      ../../../profiles/dummy-desktop.nix
+      ../../../profiles/virtualization.nix
+      ../../../profiles/server.nix
+      ../../../profiles/research.nix
+      ../../../profiles/development.nix
     ];
 
   # NOTE Nix configuration
