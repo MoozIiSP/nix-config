@@ -30,7 +30,7 @@
       homelab = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./profiles/mahines/homelab/configuration.nix
+          ./profiles/machines/homelab/configuration.nix
           # NOTE add overlays
           {
             nixpkgs.overlays = with inputs; [
