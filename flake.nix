@@ -29,7 +29,7 @@
       homelab = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./host/homelab/configuration.nix
+          ./hosts/homelab/configuration.nix
           # NOTE add overlays
           {
             nixpkgs.overlays = with inputs; [
@@ -49,7 +49,7 @@
               emacs-overlay.overlay
             ];
           }
-          ./host/wsl
+          ./hosts/wsl
         ];
         specialArgs = { inherit inputs; };
       };
