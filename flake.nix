@@ -44,7 +44,7 @@
           system = "x86_64-linux";
 	  modules = [
 	    nixos-wsl.nixosModules.default
-            { nixpkgs.overlay = with inputs; [ emacs.overlay ]; }
+            { nixpkgs.overlays = with inputs; [ emacs.overlay ]; }
             ./profiles/machines/wsl
 	  ];
           specialArgs = { inherit inputs; };
