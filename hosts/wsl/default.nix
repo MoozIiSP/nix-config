@@ -1,6 +1,6 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
-    ../../common.nix
+    ../common.nix
   ];
 
   wsl = {
@@ -8,14 +8,15 @@
     wslConf.automount.root = "/mnt";
     defaultUser = "mooziisp";
     startMenuLaunchers = true;
-#    nativeSystemd = true;
+    # When install stage, wsl will throw a exception to deny boot.
+    # nativeSystemd = true;
   };
 
   users.users.mooziisp = {
     description = "mooziisp";
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = ["wheel"];
+    extraGroups = [ "wheel" ];
     password = "1138";
   };
 

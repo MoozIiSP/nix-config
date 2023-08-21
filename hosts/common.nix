@@ -1,14 +1,14 @@
 { config, pkgs, lib, inputs, ... }:
 
 {
-  imports = [
+  #imports = [
     # ../services/grub.nix
     # ../services/ssh.nix
     # ../services/ntp.nix
     # ../services/dns.nix
     # ../services/nix.nix
     # ../services/localization.nix
-  ];
+  #];
 
   # mount tmpfs on /tmp
   #boot.tmpOnTmpfs = lib.mkDefault true;
@@ -30,7 +30,7 @@
     inotify-tools  # modification monitor
     # network tools
     tcpdump
-    telnet
+    inetutils
     # whois  # Intelligent WHOIS client from Debian
     lsof
     # download
@@ -54,10 +54,13 @@
     gitAndTools.gitFull  # version control
     # editor
     zile
-    emacsGit
+    emacs-git
     vsftpd
+    nodejs
+    jdk
+    python3
     # cachix
-    cachix
+    #cachix
   ];
   programs.fish.enable = true;
   programs.bash.enableCompletion = true;
