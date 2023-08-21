@@ -11,7 +11,7 @@
   ];
 
   # mount tmpfs on /tmp
-  boot.tmpOnTmpfs = lib.mkDefault true;
+  #boot.tmpOnTmpfs = lib.mkDefault true;
 
   # FIXME Emacs 28.0.50
   # services.emacs.enable = true;
@@ -83,5 +83,5 @@
     "nixpkgs=${inputs.nixpkgs}"
 #    "home-manager=${inputs.home-manager}"
   ];
-  system.copySystemConfiguration = true;
+  #system.copySystemConfiguration = true;
 }
