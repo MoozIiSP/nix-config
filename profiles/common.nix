@@ -54,23 +54,34 @@
     gitAndTools.gitFull  # version control
     # editor
     zile
-    #emacsGcc
+    emacsGit
+    vsftpd
     # cachix
     cachix
   ];
-
+  programs.fish.enable = true;
   programs.bash.enableCompletion = true;
 
   environment.variables = {
     "EDITOR" = "emacs";
     "VISUAL" = "emacs";
   };
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.auto-optimise-store = true;
+  time.timeZone = "Asia/Shanghai";
 
+  system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
   # documentation.enable = false;
   # documentation.nixos.enable = false;
   # #documentation.man.enable = false;
   # documentation.info.enable = false;
   # documentation.doc.enable = false;
-
+  nix.nixPath = [
+    "nixpkgs=${inputs.nixpkgs}"
+#    "home-manager=${inputs.home-manager}"
+  ];
   system.copySystemConfiguration = true;
 }

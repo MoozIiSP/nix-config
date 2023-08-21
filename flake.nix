@@ -24,7 +24,7 @@
     vscode-server.url = "github:msteen/nixos-vscode-server";
   };
 
-  outputs = { self, darwin, nixpkgs, home, ... }@inputs: {
+  outputs = { self, darwin, nixpkgs, home, nixos-wsl, ... }@inputs: {
     # The name in ${system}Configurations.${name} should match the hostname
     nixosConfigurations = {
       homelab = nixpkgs.lib.nixosSystem {
@@ -38,10 +38,16 @@
             ];
           }
         ];
+      };
 
-        # wsl = nixpkgs.lib.nixosSystem {
-        #   inherit nixos-wsl;
-        # };
+      wsl = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+	  modules = [
+	    nixos-wsl.nixosModules.default
+            { nixpkgs.overlay = with inputs; [ emacs.overlay ]; }
+            ./profiles/machines/wsl
+	  ];
+          specialArgs = { inherit inputs; };
       };
     };
 
