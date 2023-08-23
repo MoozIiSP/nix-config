@@ -35,7 +35,7 @@
     #mutableUsers = false;
     # security
     # Needs to be set explicitly because nixos-wsl disables this for ease of installation
-    security.sudo.wheelNeedsPassword = true;
+    #security.sudo.wheelNeedsPassword = true;
     # users
     users = {
       root.password = "1138";
