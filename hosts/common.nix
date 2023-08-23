@@ -54,7 +54,7 @@
     gitAndTools.gitFull  # version control
     # editor
     zile
-    emacs-git
+    #emacs-git
     vsftpd
     nodejs
     jdk
