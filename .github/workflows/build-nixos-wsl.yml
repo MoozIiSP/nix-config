@@ -1,5 +1,5 @@
-name: Emacs on windows dotfile building
-run-name: ${{ github.actor }} is build and packaging Emacs dotfiles 🚀
+name: Build NixOS-WSL installer
+run-name: ${{ github.actor }} is build and packaging NixOS-WSL 🚀
 # write a code about action workflow be trigger by manual other than push.
 #on: [push]
 on:
@@ -11,8 +11,20 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      # read this repo to test docker whether is ready to run.
-      - name: Test Docker readiness
-        run: docker info
+      # docker run nixos/nix image, attach currect directory to docker container, and execute the command 'nix build .#nixosConfigurations.wsl.config.system.build.installer'
+      - name: run nixos/nix image
+        run: docker run -v $(pwd):/workspace nixos/nix "cd workspace && nix build .#nixosConfigurations.wsl.config.system.build.installer"
       - name: Show local directory
         run: ls -lart
+
+      - name: Assemble Artifact
+        run: |
+          rm -rf ./artifact/
+          mkdir -p ./artifact/
+          cp result/tarball/nixos-wsl-installer.tar.gz ./artifact/
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: FriendlyWrt
+          path: ./artifact/

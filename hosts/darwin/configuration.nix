@@ -60,8 +60,6 @@
       libpng
       zlib
       ccache
-
-      torchmetric
     ];
 
   environment.variables = {
