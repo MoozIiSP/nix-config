@@ -32,7 +32,7 @@
   users = {
     # Using a purely declarative user setup. This means any future users will have to
     # have a password hash generated with `mkpasswd`
-    mutableUsers = false;
+    #mutableUsers = false;
     # security
     # Needs to be set explicitly because nixos-wsl disables this for ease of installation
     security.sudo.wheelNeedsPassword = true;
