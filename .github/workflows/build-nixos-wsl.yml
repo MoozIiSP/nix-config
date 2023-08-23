@@ -1,0 +1,18 @@
+name: Emacs on windows dotfile building
+run-name: ${{ github.actor }} is build and packaging Emacs dotfiles 🚀
+# write a code about action workflow be trigger by manual other than push.
+#on: [push]
+on:
+  workflow_dispatch:
+
+jobs:
+  emacs-dotfile-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      # read this repo to test docker whether is ready to run.
+      - name: Test Docker readiness
+        run: docker info
+      - name: Show local directory
+        run: ls -lart

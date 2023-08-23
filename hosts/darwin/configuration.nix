@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  python-overlay = (import ../../overlays/python/default.nix).machine-learning-bundle;
+  # No Deep Learning Environment
+  # python-overlay = (import ../../overlays/python/default.nix).machine-learning-bundle;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
