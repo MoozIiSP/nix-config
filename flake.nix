@@ -23,7 +23,7 @@
       vscode-server.url = "github:msteen/nixos-vscode-server";
     };
 
-    outputs = { self, darwin, nixpkgs, nixos-wsl, ... }@inputs: {
+    outputs = { self, darwin, nixpkgs, nixos-wsl, vscode-server, ... }@inputs: {
       # The name in ${system}Configurations.${name} should match the hostname
       nixosConfigurations = {
         homelab = nixpkgs.lib.nixosSystem {
