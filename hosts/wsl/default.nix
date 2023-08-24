@@ -47,7 +47,7 @@
       };
       ftp = {
         hashedPassword = "$6$qqLx5clVPMJtNVbl$rIt87Xn2Igjr20B3sq3iL61ER8j1WzSa2U3IcG5qpcjAOaObW4o1e3dKEpEwNm8pudL5lKt2/3be4qdUPQ8iY1";
-      }
+      };
     };
   };
 
