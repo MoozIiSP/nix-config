@@ -110,4 +110,4 @@ jobs:
         if: ${{ success() }}
         with:
           commit_message: 'automation: update flake.lock'
-          file_patthern: 'flake.lock'
+          file_pattern: 'flake.lock'
