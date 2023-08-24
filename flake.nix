@@ -44,11 +44,11 @@
           system = "x86_64-linux";
           modules = [
             nixos-wsl.nixosModules.default
+            vscode-server.nixosModules.default
             {
               nixpkgs.overlays = with inputs; [
                 emacs-overlay.overlay
               ];
-              services.vscode-server.enable = true;
             }
             ./hosts/wsl
           ];

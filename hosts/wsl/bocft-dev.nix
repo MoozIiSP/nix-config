@@ -10,4 +10,5 @@
     userlist = [ "root" "mooziisp" ];
     userlistEnable = true;
   };
+  services.vscode-server.enable = true;
 }
