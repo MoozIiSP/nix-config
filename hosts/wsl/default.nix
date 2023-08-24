@@ -37,16 +37,16 @@
     #security.sudo.wheelNeedsPassword = true;
     # users
     users = {
-      root.password = "1138";
+      root.hashedPassword = "$6$MzkWefhNrnurSwZV$WE7fMyun5BBnJ611F8zRnkyvIsQ7nl8BCszOcOg4Saw7f7ESoXsMszjfUFD4Nr.VijSKP/yKytVO2Ptl7WIFb/";
       mooziisp = {
         description = "mooziisp";
         isNormalUser = true;
         shell = pkgs.fish;
         extraGroups = [ "wheel" ];
-        password = "1138";
+        hashedPassword = "$6$MzkWefhNrnurSwZV$WE7fMyun5BBnJ611F8zRnkyvIsQ7nl8BCszOcOg4Saw7f7ESoXsMszjfUFD4Nr.VijSKP/yKytVO2Ptl7WIFb/";
       };
       ftp = {
-        password = "ftp";
+        hashedPassword = "$6$qqLx5clVPMJtNVbl$rIt87Xn2Igjr20B3sq3iL61ER8j1WzSa2U3IcG5qpcjAOaObW4o1e3dKEpEwNm8pudL5lKt2/3be4qdUPQ8iY1";
       }
     };
   };
