@@ -58,7 +58,7 @@ jobs:
       - name: Update flake.lock 🧾
         run: |
           nix flake lock
-          && git add flake.lock && git commit -m "update flake.lock" && git push
+          git add flake.lock && git commit -m "update flake.lock" && git push
 
       - name: Build installer 🛠️
         run: |
