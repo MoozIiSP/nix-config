@@ -39,12 +39,16 @@ jobs:
 
   build:
     name: Build 🛠️
+
     needs:
       - prepare
+
     permissions:
       # Give the default GITHUB_TOKEN write permission to commit and push the changed files back to the repository.
       contents: write
+
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v3
