@@ -54,7 +54,8 @@
     gitAndTools.gitFull  # version control
     # editor
     zile
-    #emacs-git
+    emacsPackages.rime
+    emacs-git
     vsftpd
     nodejs
     jdk
@@ -87,4 +88,30 @@
 #    "home-manager=${inputs.home-manager}"
   ];
   #system.copySystemConfiguration = true;
+
+  fonts = {
+    enableDefaultFonts = true;
+    enableFontDir = true;
+
+    fonts = with pkgs; [
+      fira-mono
+      libertine
+      open-sans
+      twemoji-color-font
+      liberation_ttf
+      sarasa-gothic
+      maple-mono-SC-NF
+    ];
+
+    fontconfig = {
+      enable = true;
+      antialias = true;
+      defaultFonts = {
+        monospace = [ "Fira Mono" ];
+        serif = [ "Linux Libertine" ];
+        sansSerif = [ "Open Sans" ];
+        emoji = [ "Twitter Color Emoji" ];
+      };
+    };
+  };
 }
