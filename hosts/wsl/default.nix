@@ -45,6 +45,9 @@
         extraGroups = [ "wheel" ];
         password = "1138";
       };
+      ftp = {
+        password = "ftp";
+      }
     };
   };
 

@@ -7,7 +7,7 @@
 #    chrootlocalUser = true;
     writeEnable = true;
     localUsers = true;
-    userlist = [ "root" "mooziisp" ];
+    userlist = [ "ftp" ];
     userlistEnable = true;
   };
   services.vscode-server.enable = true;
