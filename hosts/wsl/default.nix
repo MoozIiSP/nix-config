@@ -8,8 +8,7 @@
 
   wsl = {
     enable = true;
-    #wslConf.automount.root = "/mnt";
-    automountPath = "/mnt";
+    wslConf.automount.root = "/mnt";
     defaultUser = "mooziisp";
     startMenuLaunchers = true;
 
