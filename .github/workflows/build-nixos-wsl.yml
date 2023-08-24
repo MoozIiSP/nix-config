@@ -57,8 +57,7 @@ jobs:
 
       - name: Update flake.lock 🧾
         run: |
-          nix flake lock
-          git add flake.lock && git commit -m "update flake.lock" && git push
+          rm flake.lock && nix flake lock
 
       - name: Build installer 🛠️
         run: |
@@ -69,3 +68,8 @@ jobs:
         with:
           name: installer
           path: result/tarball/nixos-wsl-installer.tar.gz
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        if: ${{ success() }}
+        with:
+          commit_message: "automation: Emacs ${{ steps.version.outputs.ver }} -> ${{ steps.version.outputs.rev }}"
