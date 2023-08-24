@@ -55,10 +55,13 @@ jobs:
           echo ${{ needs.prepare.outputs.version }} > ./VERSION
           echo $(git rev-parse HEAD) >> ./VERSION
 
+      - name: Update flake.lock 🧾
+        run: |
+          nix flake lock
+          && git add flake.lock && git commit -m "update flake.lock" && git push
+
       - name: Build installer 🛠️
         run: |
-          pwd &&
-          ls -lart &&
           nix build '.#nixosConfigurations.wsl.config.system.build.installer'
 
       - name: Upload installer 📤
