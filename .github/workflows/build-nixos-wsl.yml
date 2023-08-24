@@ -66,11 +66,38 @@ jobs:
         run: |
           rm flake.lock && nix flake lock
 
+      - uses: nixbuild/nix-quick-install-action@v25
+        with:
+          nix_conf: |
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+            keep-outputs = true
+
+      # - name: Restore and cache Nix store
+      #   if: ${{ matrix.do-cache }}
+      #   uses: ./.
+      #   with:
+      #     gc-enabled-linux: true
+      #     gc-max-store-size-linux: 8000000000
+      #     gc-enabled-macos: true
+      #     gc-max-store-size-macos: 8000000000
+          
+      #     purge-enabled: true
+      #     purge-max-age: 86400
+      #     purge-by-created-time: true
+      #     purge-by-accessed-time: true
+          
+      #     # output debug info
+      #     debug: true
+          
+      #     # save a new cache every time ci file changes
+      #     key: cache-${{ matrix.os }}-${{ hashFiles('.github/workflows/ci.yaml') }}
+      #     restore-keys: |
+      #       cache-${{ matrix.os }}-${{ hashFiles('.github/workflows/ci.yaml') }}-
+      #       cache-${{ matrix.os }}-
+
       - name: Build installer 🛠️
         run: |
-          bash <(curl -L https://nixos.org/nix/install)
-          nix-env -iA cachix -f https://cachix.org/api/v1/install
-          cachix use nix-community
           nix build '.#nixosConfigurations.wsl.config.system.build.installer'
 
       - name: Upload installer 📤
