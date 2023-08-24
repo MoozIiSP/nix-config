@@ -3,11 +3,7 @@ run-name: ${{ github.actor }} is build and packaging NixOS-WSL 🚀
 # write a code about action workflow be trigger by manual other than push.
 #on: [push]
 on:
-  workflow_dispatch:
   workflow_call: {}
-  schedule:
-    # 每年5月/10月编译
-    - cron: '0 0 15 5,10 *'
 
 jobs:
   prepare:

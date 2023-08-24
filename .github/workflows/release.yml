@@ -2,13 +2,19 @@ name: 'Release'
 
 on:
   workflow_dispatch:
-  push:
-    tags: []
+  schedule:
+    # 每年5月/10月编译
+    - cron: '0 0 15 5,11 *'
+  #push:
+  # tags: []
 
 jobs:
   build:
     name: Build 🛠️
     uses: mooziisp/nix-config/.github/workflows/build-nixos-wsl.yml@main
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the changed files back to the repository.
+      contents: write
   release:
     needs:
       - build
