@@ -66,6 +66,8 @@
   programs.fish.enable = true;
   programs.bash.enableCompletion = true;
 
+  services.emacs.enable = true;
+
   environment.variables = {
     "EDITOR" = "emacs";
     "VISUAL" = "emacs";

@@ -68,6 +68,7 @@ jobs:
 
       - name: Build installer 🛠️
         run: |
+          cachix use nix-community
           nix build '.#nixosConfigurations.wsl.config.system.build.installer'
 
       - name: Upload installer 📤
