@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
+      - name: ls
+        run: ls -lart
       # docker run nixos/nix image, attach currect directory to docker container, and execute the command 'nix build .#nixosConfigurations.wsl.config.system.build.installer'
       - name: run nixos/nix image
         run: docker run -v $(pwd):/workspace nixos/nix sh build-wsl.sh
