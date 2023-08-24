@@ -4,6 +4,7 @@ run-name: ${{ github.actor }} is build and packaging NixOS-WSL 🚀
 #on: [push]
 on:
   workflow_dispatch:
+  workflow_call: {}
   schedule:
     # 每年5月/10月编译
     - cron: '0 0 15 5,10 *'
