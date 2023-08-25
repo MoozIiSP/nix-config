@@ -1,9 +1,14 @@
-name: Build NixOS-WSL installer
-run-name: ${{ github.actor }} is build and packaging NixOS-WSL 🚀
+name: Build and Release NixOS-WSL installer
+run-name: ${{ github.actor }} is building and releasing NixOS-WSL 🚀
 # write a code about action workflow be trigger by manual other than push.
 #on: [push]
 on:
-  workflow_call: {}
+  workflow_dispatch:
+  schedule:
+    # 每年5月/10月编译
+    - cron: '0 0 15 5,11 *'
+  #push:
+  # tags: []
 
 jobs:
   prepare:
@@ -40,6 +45,9 @@ jobs:
     needs:
       - prepare
 
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+
     permissions:
       # Give the default GITHUB_TOKEN write permission to commit and push the changed files back to the repository.
       contents: write
@@ -65,9 +73,11 @@ jobs:
             keep-outputs = true
 
       - name: Set version 🏷️
+        id: version
         run: |
           echo ${{ needs.prepare.outputs.version }} > ./VERSION
           echo $(git rev-parse HEAD) >> ./VERSION
+          echo "version=$(head -n 1 ./VERSION)" >> $GITHUB_OUTPUT
 
       - name: Update flake.lock 🧾
         run: |
@@ -111,3 +121,31 @@ jobs:
         with:
           commit_message: 'automation: update flake.lock'
           file_pattern: 'flake.lock'
+          tagging_message: ${{ needs.prepare.outputs.version }}
+
+  release:
+    needs:
+      - build
+    name: Create Release 📢
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download installer 📥
+        uses: actions/download-artifact@v3
+        with:
+          name: installer
+
+      - name: Generate checksums 🔑
+        run: |
+          for x in *.tar.gz; do
+            sha256sum $x > ${x}.sha256
+          done
+
+      - name: Attach to release 📦
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ needs.build.outputs.version }}
+          files: |
+            nixos-wsl-installer.tar.gz
+            nixos-wsl-installer.tar.gz.sha256
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
