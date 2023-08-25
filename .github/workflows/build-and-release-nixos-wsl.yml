@@ -70,7 +70,7 @@ jobs:
           nix_conf: |
             substituters = https://cache.nixos.org/ https://nix-community.cachix.org
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
-            keep-outputs = true
+            #keep-outputs = true
 
       - name: Set version 🏷️
         id: version
@@ -121,7 +121,6 @@ jobs:
         with:
           commit_message: 'automation: update flake.lock'
           file_pattern: 'flake.lock'
-          tagging_message: ${{ needs.prepare.outputs.version }}
 
   release:
     needs:
