@@ -110,18 +110,11 @@ jobs:
         run: |
           nix build '.#nixosConfigurations.wsl.config.system.build.installer'
 
-      - name: Generate checksums 🔑
-        run: |
-          cd result/tarball
-          for x in *.tar.gz; do
-            sha256sum $x > ${x}.sha256
-          done
-
       - name: Upload installer 📤
         uses: actions/upload-artifact@v3
         with:
           name: installer
-          path: result/tarball/nixos-wsl-installer.tar.gz*
+          path: result/tarball/nixos-wsl-installer.tar.gz
 
       - uses: stefanzweifel/git-auto-commit-action@v4.16.0
         if: ${{ success() }}
@@ -140,4 +133,4 @@ jobs:
           #commit: 23.05
           replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: ./artifact/nixos-wsl-installer.tar.gz*
+          artifacts: ./artifact/nixos-wsl-installer.tar.gz
