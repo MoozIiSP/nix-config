@@ -133,4 +133,4 @@ jobs:
           #commit: 23.05
           replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: ./artifact/nixos-wsl-installer.tar.gz
+          artifacts: result/tarball/nixos-wsl-installer.tar.gz
