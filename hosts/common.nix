@@ -23,7 +23,7 @@
   # ];
 
   services.emacs.enable = true;
-  services.emacs.package = pkgs.emacs-git;
+  services.emacs.package = with pkgs; ((emacsPackagesFor pkgs.emacs-git).emacsWithPackages (epkgs: [ epkgs.vterm ]));
 
   environment.systemPackages = with pkgs; [
     # system status monitor
@@ -57,7 +57,7 @@
     gitAndTools.gitFull  # version control
     # editor
     zile
-    ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [ epkgs.rime ]))
+    ((emacsPackagesFor emacs-git).emacsWithPackages (epkgs: [ epkgs.rime ]))
     vsftpd
     nodejs
     jdk
