@@ -110,11 +110,16 @@ jobs:
         run: |
           nix build '.#nixosConfigurations.wsl.config.system.build.installer'
 
+      - name: Split installer 🛠️
+        run: |
+          cd result/tarball/
+          split -d -b 1800M nixos-wsl-installer.tar.gz nixos-wsl-installer.tar.gz. && rm nixos-wsl-installer.tar.gz
+
       - name: Upload installer 📤
         uses: actions/upload-artifact@v3.1.2
         with:
           name: installer
-          path: result/tarball/nixos-wsl-installer.tar.gz
+          path: result/tarball/nixos-wsl-installer.tar.gz*
 
       - uses: stefanzweifel/git-auto-commit-action@v4.16.0
         if: ${{ success() }}
@@ -133,4 +138,4 @@ jobs:
           #commit: 23.05
           replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: result/tarball/nixos-wsl-installer.tar.gz
+          artifacts: result/tarball/nixos-wsl-installer.tar.gz*
