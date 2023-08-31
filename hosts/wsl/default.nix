@@ -55,6 +55,7 @@
   users.mutableUsers = false;
 
   networking.hostName = "bocft-wsl";
+  networking.firewall.enable = false;
 
   system.stateVersion = "23.05";
 }

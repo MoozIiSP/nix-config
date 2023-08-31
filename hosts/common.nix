@@ -55,7 +55,7 @@
     # editor
     zile
     emacsPackages.rime
-    #emacs-git
+    emacs-git
     vsftpd
     nodejs
     jdk
