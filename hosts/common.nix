@@ -92,10 +92,10 @@
   #system.copySystemConfiguration = true;
 
   fonts = {
-    enableDefaultFonts = true;
-    enableFontDir = true;
+    enableDefaultPackages = true;
+    fontDir.enable = true;
 
-    fonts = with pkgs; [
+    packages = with pkgs; [
       fira-mono
       libertine
       open-sans
