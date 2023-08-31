@@ -111,7 +111,7 @@ jobs:
           nix build '.#nixosConfigurations.wsl.config.system.build.installer'
 
       - name: Upload installer 📤
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: installer
           path: result/tarball/nixos-wsl-installer.tar.gz
