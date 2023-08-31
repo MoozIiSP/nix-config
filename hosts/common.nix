@@ -54,6 +54,7 @@
     gitAndTools.gitFull  # version control
     # editor
     zile
+    (emacs-git.withPackages(epkgs: with epkgs; [ rime ]))
     vsftpd
     nodejs
     jdk
@@ -63,18 +64,6 @@
   ];
   programs.fish.enable = true;
   #programs.bash.enableCompletion = true;
-  programs.emacs = {
-    enable = true;
-    package = pkgs.emacsWithPackagesFromUsePackage {
-      package = pkgs.emacs-git.overrideAttrs (_: { passthru.version = "30.0.50"; });
-      config = ./emacs/system.org;
-      alwaysEnsure = true;
-      alwaysTangle = true;
-    };
-    extraPackages = (epkgs: with epkgs; [
-      rime
-    ]);
-  };
 
   services.emacs.enable = true;
 
