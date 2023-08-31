@@ -57,7 +57,7 @@
     gitAndTools.gitFull  # version control
     # editor
     zile
-    (emacs.withPackages(epkgs: with epkgs; [ rime ]))
+    ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [ epkgs.rime ]))
     vsftpd
     nodejs
     jdk
