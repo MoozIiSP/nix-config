@@ -22,6 +22,9 @@
   #   # (import ../overlays)  # just fix version
   # ];
 
+  services.emacs.enable = true;
+  services.emacs.package = pkgs.emacs-git;
+
   environment.systemPackages = with pkgs; [
     # system status monitor
     htop
@@ -54,7 +57,7 @@
     gitAndTools.gitFull  # version control
     # editor
     zile
-    (emacs-git.withPackages(epkgs: with epkgs; [ rime ]))
+    (emacs.withPackages(epkgs: with epkgs; [ rime ]))
     vsftpd
     nodejs
     jdk
@@ -64,8 +67,6 @@
   ];
   programs.fish.enable = true;
   #programs.bash.enableCompletion = true;
-
-  services.emacs.enable = true;
 
   environment.variables = {
     "EDITOR" = "emacs";
